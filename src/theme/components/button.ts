@@ -15,14 +15,29 @@ export const buttonStyles: ComponentStyleConfig = {
       outline: "none",
       boxShadow: "none",
     },
+    maxH: "60px",
+    maxW: "150px",
   },
   // styles for different visual variants ("outline", "solid")
   variants: {
     primary: {
       bg: "primary",
-      borderRadius: "24px",
+      borderRadius: "10px",
       textTransform: "capitalize",
       p: "15px",
+    },
+    primaryGhost: {
+      bg: "trasnparent",
+      border: "2px solid",
+      borderColor: "primary",
+      color: "primary",
+      borderRadius: "10px",
+      textTransform: "capitalize",
+      p: "13px",
+      _hover: {
+        bg: "primary",
+        color: "inherit",
+      },
     },
     secondary: {
       bg: "secondary",

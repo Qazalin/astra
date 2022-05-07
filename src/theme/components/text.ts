@@ -29,7 +29,11 @@ export const textStyles: ComponentStyleConfig = {
       fontWeight: "light",
     },
     h3: {
-      fontSize: ["0.85rem", "0.9rem", "0.95", "1rem", "1.3rem"],
+      fontSize: ["0.90rem", "0.95rem", "1rem", "1.2rem", "1.3rem"],
+      fontWeight: "light",
+    },
+    h4: {
+      fontSize: ["0.85rem", "0.9rem", "0.95rem", "1rem", "1.3rem"],
       fontWeight: "light",
     },
     p: {

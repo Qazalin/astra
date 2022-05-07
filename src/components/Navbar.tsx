@@ -1,23 +1,16 @@
-import { Box, Center, Flex, Button, Text } from "@chakra-ui/react";
-import {
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
-} from "@chakra-ui/react";
+import { Center, Flex, Button, Text, VStack, HStack } from "@chakra-ui/react";
+import { Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 import { Logo } from "./Logo";
 import { useAdaptivityContext } from "@astra/hooks";
 import { RiMenu2Line } from "react-icons/ri";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 export const Navbar = () => {
-  const menuOptions = ["home", "marketplace", "networks"];
+  const menuOptions = ["products", "networks"];
   const isSmallScreen = useAdaptivityContext();
   return (
-    <Flex w="100%" h="100%" bg="bg1">
+    <Flex w="100%" h="100%" justifyContent="space-between">
       <Logo />
       <Center
         ml="10%"
@@ -25,24 +18,37 @@ export const Navbar = () => {
         textTransform="capitalize"
       >
         {menuOptions.map((o, idx) => (
-          <Text mx="20px" key={idx} variant="h2">
-            {o}
-          </Text>
+          <Link href={`${o}`} key={idx}>
+            <Text mx="20px" variant="h3">
+              {o}
+            </Text>
+          </Link>
         ))}
       </Center>
       <Center display={isSmallScreen ? "flex" : "none"}>
         <Menu>
-          <MenuButton as={Button} rightIcon={<RiMenu2Line />} />
+          <MenuButton as={Button} fontSize="25px" rightIcon={<RiMenu2Line />} />
 
           <MenuList>
             {menuOptions.map((o, idx) => (
               <MenuItem key={idx} textTransform="capitalize">
-                ✨{o}
+                {o}
               </MenuItem>
             ))}
           </MenuList>
         </Menu>
       </Center>
+      <HStack>
+        <Button
+          as={motion.button}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.9 }}
+          variant="primary"
+        >
+          get started
+        </Button>
+        <Button variant="primaryGhost">login</Button>
+      </HStack>
     </Flex>
   );
 };

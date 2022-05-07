@@ -5,8 +5,8 @@ import { Navbar } from "@astra/components";
 
 export const SharedLayout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <Box w="100vw" h="100vh">
-      <Box w="100%" h="100px">
+    <Box px={["20px", "25px", "60px", "80px"]} w="100vw" h="100vh">
+      <Box w="100%" h="100px" pt="15px">
         <Navbar />
       </Box>
       <Box h="100%" w="100%">

@@ -1,9 +1,9 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Image, Button, Box, Text } from "@chakra-ui/react";
 
 export const Hero = () => {
   return (
-    <Box>
-      <Text variant="heading">To the future</Text>
+    <Box w="100%" h="100%" textAlign="center">
+      <Text variant="heading">To future</Text>
       <Text variant="heading">and beyond</Text>
     </Box>
   );
