@@ -1,4 +1,12 @@
-import { Center, Flex, Button, Text, VStack, HStack } from "@chakra-ui/react";
+import {
+  Center,
+  Flex,
+  Button,
+  Box,
+  Text,
+  VStack,
+  HStack,
+} from "@chakra-ui/react";
 import { Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 import { Logo } from "./Logo";
 import { useAdaptivityContext } from "@astra/hooks";
@@ -11,7 +19,9 @@ export const Navbar = () => {
   const isSmallScreen = useAdaptivityContext();
   return (
     <Flex w="100%" h="100%" justifyContent="space-between">
-      <Logo />
+      <Box cursor="pointer" w="100%" h="100%">
+        <Logo />
+      </Box>
       <Center
         ml="10%"
         display={isSmallScreen ? "none" : "flex"}
@@ -19,7 +29,7 @@ export const Navbar = () => {
       >
         {menuOptions.map((o, idx) => (
           <Link href={`${o}`} key={idx}>
-            <Text mx="20px" variant="h3">
+            <Text cursor="pointer" mx="20px" variant="h3">
               {o}
             </Text>
           </Link>
