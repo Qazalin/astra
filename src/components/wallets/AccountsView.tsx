@@ -2,6 +2,7 @@ import { formatEther } from "@ethersproject/units";
 import type { Web3ReactHooks } from "@web3-react/core";
 import { useBalances } from "@astra/hooks";
 import { Box, ListItem, Text, List } from "@chakra-ui/react";
+import { AccountView } from "@astra/components";
 
 export function AccountsView({
   accounts,
@@ -17,27 +18,25 @@ export function AccountsView({
   if (accounts === undefined) return null;
 
   return (
-    <Box>
-      <Text>Accounts: </Text>
-      <Box>
-        {accounts.length === 0
-          ? "None"
-          : accounts?.map((account, i) => (
-              <List
-                key={account}
-                style={{
-                  margin: 0,
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                }}
-              >
-                <ListItem>{ENSNames?.[i] ?? account}</ListItem>
-                <ListItem>
-                  {balances?.[i] ? ` (Ξ${formatEther(balances[i])})` : null}
-                </ListItem>
-              </List>
-            ))}
-      </Box>
+    <Box w="100%" h="100%">
+      {accounts.length === 0
+        ? "None"
+        : accounts?.map((account, i) => (
+            <List
+              key={account}
+              style={{
+                margin: 0,
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
+              <AccountView
+                address={account}
+                ensName="qazal.eth"
+                twitter={"qazalin"}
+              />
+            </List>
+          ))}
     </Box>
   );
 }
