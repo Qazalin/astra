@@ -14,6 +14,7 @@ export function ChainSelect({
 }) {
   return (
     <Select
+      w="150px"
       value={chainId}
       onChange={(event) => {
         switchChain?.(Number(event.target.value));

@@ -6,6 +6,7 @@ import {
   Text,
   VStack,
   HStack,
+  Icon,
 } from "@chakra-ui/react";
 import { Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 import { Logo } from "./Logo";
@@ -13,6 +14,8 @@ import { useAdaptivityContext } from "@astra/hooks";
 import { RiMenu2Line } from "react-icons/ri";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { MetaMaskIcon } from "@astra/components/icons";
+import { MetaMaskConnect } from "@astra/components";
 
 export const Navbar = () => {
   const menuOptions = ["products", "networks"];
@@ -35,7 +38,7 @@ export const Navbar = () => {
           </Link>
         ))}
       </Center>
-      <Center display={isSmallScreen ? "flex" : "none"}>
+      <Center display={isSmallScreen ? "flex" : "none"} mx="40px">
         <Menu>
           <MenuButton as={Button} fontSize="25px" rightIcon={<RiMenu2Line />} />
 
@@ -48,16 +51,8 @@ export const Navbar = () => {
           </MenuList>
         </Menu>
       </Center>
-      <HStack>
-        <Button
-          as={motion.button}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.9 }}
-          variant="primary"
-        >
-          get started
-        </Button>
-        <Button variant="primaryGhost">login</Button>
+      <HStack w="280px">
+        <MetaMaskConnect />
       </HStack>
     </Flex>
   );

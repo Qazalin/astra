@@ -9,7 +9,6 @@ const Index = () => {
   return (
     <Box>
       <Web3Provider />
-      <MetaMaskConnect />
       <Hero />
     </Box>
   );

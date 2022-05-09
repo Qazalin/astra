@@ -4,6 +4,8 @@ import { useCallback, useState } from "react";
 import { CHAINS, getAddChainParameters } from "@astra/lib";
 import { Stack, Button } from "@chakra-ui/react";
 import { ChainSelect, ErrorHandler } from "@astra/components";
+import { motion } from "framer-motion";
+import { MetaMaskIcon } from "../icons";
 
 export function ConnectWallet({
   connector,
@@ -57,6 +59,11 @@ export function ConnectWallet({
       ) : (
         <Button
           variant="connect"
+          as={motion.button}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.9 }}
+          variant="primary"
+          leftIcon={<MetaMaskIcon />}
           onClick={
             isActivating
               ? undefined
@@ -69,7 +76,7 @@ export function ConnectWallet({
           }
           disabled={isActivating}
         >
-          Connect
+          Get started
         </Button>
       )}
     </Stack>

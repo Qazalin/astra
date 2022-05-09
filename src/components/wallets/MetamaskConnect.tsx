@@ -32,11 +32,11 @@ export function MetaMaskConnect() {
         error={error}
         isActive={isActive}
       />
-      <AccountsView
-        accounts={accounts}
-        provider={provider}
-        ENSNames={ENSNames}
-      />
+      {/* <AccountsView
+              accounts={accounts}
+              provider={provider}
+              ENSNames={ENSNames}
+          /> */}
     </Box>
   );
 }

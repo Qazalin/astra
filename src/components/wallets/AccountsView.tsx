@@ -1,7 +1,7 @@
 import { formatEther } from "@ethersproject/units";
 import type { Web3ReactHooks } from "@web3-react/core";
 import { useBalances } from "@astra/hooks";
-import { Box, ListItem, Text, List } from "@chakra-ui/react";
+import { Box, Stack } from "@chakra-ui/react";
 import { AccountView } from "@astra/components";
 
 export function AccountsView({
@@ -22,20 +22,13 @@ export function AccountsView({
       {accounts.length === 0
         ? "None"
         : accounts?.map((account, i) => (
-            <List
-              key={account}
-              style={{
-                margin: 0,
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-              }}
-            >
+            <Stack key={account} w="100%" h="100%">
               <AccountView
                 address={account}
-                ensName="qazal.eth"
+                ensName={ENSNames[i]}
                 twitter={"qazalin"}
               />
-            </List>
+            </Stack>
           ))}
     </Box>
   );

@@ -1,4 +1,4 @@
-import { Alert } from "@chakra-ui/react";
+import { Alert, Box } from "@chakra-ui/react";
 
 /**
  * ErrorHandler for MetaMask and Brave wallet
@@ -15,5 +15,5 @@ export const ErrorHandler: React.FC<{ error: Error }> = ({ error }) => {
       errorMsg = ErrorMessage.allreadyProcessing;
   }
 
-  return <Alert status="error">{errorMsg}</Alert>;
+  return <Box bg="red.400">{errorMsg}</Box>;
 };
