@@ -41,7 +41,7 @@ export const buttonStyles: ComponentStyleConfig = {
     },
     // wallet connect button
     connect: {
-      bg: "secondary",
+      bg: "primary",
       borderRadius: "10px",
       textTransform: "capitalize",
       p: "15px",

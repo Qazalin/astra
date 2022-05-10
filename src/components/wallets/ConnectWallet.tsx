@@ -2,7 +2,7 @@ import type { Web3ReactHooks } from "@web3-react/core";
 import type { MetaMask } from "@web3-react/metamask";
 import { useCallback, useState } from "react";
 import { CHAINS, getAddChainParameters } from "@astra/lib";
-import { Stack, Button } from "@chakra-ui/react";
+import { Box, Stack, Button } from "@chakra-ui/react";
 import { ChainSelect, ErrorHandler } from "@astra/components";
 import { motion } from "framer-motion";
 import { MetaMaskIcon } from "../icons";

@@ -1,5 +1,5 @@
 import { hooks, metaMask } from "@astra/lib/connectors";
-import { Box } from "@chakra-ui/react";
+import { Box, VStack } from "@chakra-ui/react";
 import { ConnectWallet, AccountsView } from "@astra/components";
 
 const {
@@ -24,7 +24,7 @@ export function MetaMaskConnect() {
   const ENSNames = useENSNames(provider);
 
   return (
-    <Box w="100%" h="100%">
+    <VStack spacing={6} w="100%" h="100%">
       <ConnectWallet
         connector={metaMask}
         chainId={chainId}
@@ -32,11 +32,11 @@ export function MetaMaskConnect() {
         error={error}
         isActive={isActive}
       />
-      {/* <AccountsView
-              accounts={accounts}
-              provider={provider}
-              ENSNames={ENSNames}
-          /> */}
-    </Box>
+      <AccountsView
+        accounts={accounts}
+        provider={provider}
+        ENSNames={ENSNames}
+      />
+    </VStack>
   );
 }
