@@ -62,7 +62,6 @@ export function ConnectWallet({
           as={motion.button}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.9 }}
-          variant="primary"
           leftIcon={<MetaMaskIcon />}
           onClick={
             isActivating
