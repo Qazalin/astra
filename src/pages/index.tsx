@@ -1,7 +1,7 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Icon, Box, Text } from "@chakra-ui/react";
 import { LandingLayout } from "@astra/layouts";
 import { ReactElement } from "react";
-import { Hero } from "@astra/components";
+import { Hero, SearchBar } from "@astra/components";
 import { Web3Provider } from "@astra/providers";
 
 const Index = () => {
@@ -9,6 +9,9 @@ const Index = () => {
     <Box>
       <Web3Provider />
       <Hero />
+      <Box maxW="400px">
+        <SearchBar />
+      </Box>
     </Box>
   );
 };
