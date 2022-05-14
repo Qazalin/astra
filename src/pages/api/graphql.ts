@@ -1,14 +1,20 @@
 import { ApolloServer } from "apollo-server-micro";
 import { resolvers } from "@astra/gql";
 import { typeDefs } from "@astra/gql";
+import { Moralis } from "moralis";
 
 const apolloServer = new ApolloServer({
   resolvers,
   typeDefs,
 });
 
-const startServer = apolloServer.start();
+const startApolloServer = apolloServer.start();
 
+async function startMoralisServer() {
+  const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
+  const appId = process.env.NEXT_PUBLIC_APP_ID;
+  Moralis.start({ serverUrl, appId });
+}
 export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Credentials", "true");
   res.setHeader(
@@ -24,7 +30,8 @@ export default async function handler(req, res) {
     return false;
   }
 
-  await startServer;
+  await startApolloServer;
+  await startMoralisServer();
   await apolloServer.createHandler({
     path: "/api/graphql",
   })(req, res);
