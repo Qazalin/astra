@@ -1,7 +1,7 @@
 import { ApolloServer } from "apollo-server-micro";
 import { resolvers } from "@astra/gql";
 import { typeDefs } from "@astra/gql";
-import { Moralis } from "moralis";
+import Moralis from "moralis/node";
 
 const apolloServer = new ApolloServer({
   resolvers,
