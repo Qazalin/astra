@@ -1,4 +1,7 @@
 import Moralis from "moralis/node";
+import { Resolvers } from "./generated/resolvers-types.generated";
+import { queryResolvers } from "./resolvers/Query";
+import { queryUserResolver } from "./resolvers/User";
 
 async function getBalance(addr: string) {
   const options = {
@@ -10,16 +13,7 @@ async function getBalance(addr: string) {
   return balance.toFixed(2);
 }
 const acc = "0x94de7e2c73529ebf3206aa3459e699fbcdfcd49b";
-export const resolvers = {
-  Query: {
-    user: async (_, { address }) => {
-      const balance = getBalance(address);
-      return {
-        address,
-        balance,
-        ens: process.env.NEXT_PUBLIC_APP_ID,
-        twitter: "me",
-      };
-    },
-  },
+
+export const resolvers: Resolvers = {
+  Query: queryResolvers,
 };

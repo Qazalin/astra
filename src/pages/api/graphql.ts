@@ -4,8 +4,8 @@ import { typeDefs } from "@astra/gql";
 import Moralis from "moralis/node";
 
 const apolloServer = new ApolloServer({
-  resolvers,
   typeDefs,
+  resolvers,
 });
 
 const startApolloServer = apolloServer.start();
