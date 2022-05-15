@@ -1,6 +1,9 @@
-import { UserResolvers } from "../generated/resolvers-types.generated";
+import {
+  QueryResolvers,
+  UserResolvers,
+} from "../generated/resolvers-types.generated";
 
-export const queryUserResolver: UserResolvers = {
+export const queryUserResolver: QueryResolvers = {
   address: ({ address }) => {
     return address;
   },

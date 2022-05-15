@@ -9,6 +9,7 @@ export const typeDefs = gql`
   }
 
   type Query {
-    user(address: String!): User
+    userByAddr(address: String!): User
+    userByEns(ens: String!): User
   }
 `;
