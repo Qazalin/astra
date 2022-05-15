@@ -1,5 +1,9 @@
-import { getEtherBalance, getEnsName, getTwitterHandle } from "@astra/lib";
-import { resolveEns } from "@astra/lib/resolveEns";
+import {
+  getEtherBalance,
+  getEnsName,
+  getTwitterHandle,
+  resolveEns,
+} from "@astra/gql/utils";
 import { QueryResolvers } from "../generated/resolvers-types.generated";
 
 export const queryResolvers: QueryResolvers = {

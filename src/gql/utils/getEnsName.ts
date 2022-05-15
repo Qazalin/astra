@@ -1,5 +1,5 @@
 import { GetEnsName } from "@astra/types";
-import Moralis from "moralis/node";
+import { Moralis } from "moralis";
 import { operations } from "moralis/types/generated/web3Api";
 
 /**
