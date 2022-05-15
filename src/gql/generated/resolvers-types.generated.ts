@@ -23,18 +23,33 @@ export type Contract = {
 
 export type Nft = {
   __typename?: 'NFT';
-  image: Scalars['String'];
-  minted_at: Scalars['String'];
-  name: Scalars['String'];
-  owner: Scalars['String'];
-  symbol: Scalars['String'];
-  tokenType: Scalars['String'];
+  amount?: Maybe<Scalars['String']>;
+  block_number?: Maybe<Scalars['String']>;
+  block_number_minted?: Maybe<Scalars['String']>;
+  contract_type?: Maybe<Scalars['String']>;
+  frozen?: Maybe<Scalars['Int']>;
+  is_valid?: Maybe<Scalars['Int']>;
+  metadata?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  owner_of?: Maybe<Scalars['String']>;
+  symbol?: Maybe<Scalars['String']>;
+  synced_at?: Maybe<Scalars['String']>;
+  syncing?: Maybe<Scalars['Int']>;
+  token_address?: Maybe<Scalars['String']>;
+  token_id?: Maybe<Scalars['String']>;
+  token_uri?: Maybe<Scalars['String']>;
 };
 
 export type Query = {
   __typename?: 'Query';
+  contract?: Maybe<Contract>;
   userByAddr?: Maybe<User>;
   userByEns?: Maybe<User>;
+};
+
+
+export type QueryContractArgs = {
+  address: Scalars['String'];
 };
 
 
@@ -127,6 +142,7 @@ export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Contract: ResolverTypeWrapper<Contract>;
   Float: ResolverTypeWrapper<Scalars['Float']>;
+  Int: ResolverTypeWrapper<Scalars['Int']>;
   NFT: ResolverTypeWrapper<Nft>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
@@ -138,6 +154,7 @@ export type ResolversParentTypes = {
   Boolean: Scalars['Boolean'];
   Contract: Contract;
   Float: Scalars['Float'];
+  Int: Scalars['Int'];
   NFT: Nft;
   Query: {};
   String: Scalars['String'];
@@ -152,16 +169,26 @@ export type ContractResolvers<ContextType = any, ParentType extends ResolversPar
 };
 
 export type NftResolvers<ContextType = any, ParentType extends ResolversParentTypes['NFT'] = ResolversParentTypes['NFT']> = {
-  image?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  minted_at?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  owner?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  symbol?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  tokenType?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  amount?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  block_number?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  block_number_minted?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  contract_type?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  frozen?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  is_valid?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  metadata?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  owner_of?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  symbol?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  synced_at?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  syncing?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  token_address?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  token_id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  token_uri?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  contract?: Resolver<Maybe<ResolversTypes['Contract']>, ParentType, ContextType, RequireFields<QueryContractArgs, 'address'>>;
   userByAddr?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryUserByAddrArgs, 'address'>>;
   userByEns?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<QueryUserByEnsArgs, 'ens'>>;
 };

@@ -7,8 +7,8 @@ import { GetStaticProps } from "next";
 import { apolloClient } from "@astra/lib";
 import { gql } from "@apollo/client";
 
-const Index = ({ data }) => {
-  console.log(data);
+const Index = ({ countries }) => {
+  console.log(countries);
   return (
     <Box>
       <Web3Provider />

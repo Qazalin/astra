@@ -24,4 +24,10 @@ export const queryResolvers: QueryResolvers = {
       balance: await getEtherBalance(address),
     };
   },
+  contract: async (_, { address }) => {
+    return {
+      address,
+      name: "Bayc",
+    };
+  },
 };

@@ -9,12 +9,21 @@ export const typeDefs = gql`
   }
 
   type NFT {
-    image: String!
-    owner: String!
-    tokenType: String!
-    name: String!
-    symbol: String!
-    minted_at: String!
+    token_address: String
+    token_id: String
+    block_number_minted: String
+    owner_of: String
+    block_number: String
+    amount: String
+    contract_type: String
+    name: String
+    symbol: String
+    token_uri: String
+    metadata: String
+    synced_at: String
+    is_valid: Int
+    syncing: Int
+    frozen: Int
   }
 
   type Contract {
