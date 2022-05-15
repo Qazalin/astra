@@ -1,11 +1,15 @@
+import { getEnsName } from "@astra/lib/getEnsName";
+import { getEtherBalance } from "@astra/lib/getEtherBalance";
 import { QueryResolvers } from "../generated/resolvers-types.generated";
 
 export const queryResolvers: QueryResolvers = {
-  user: () => {
+  user: async (_, { address }) => {
+    const ens = await getEnsName(address);
     return {
-      address: "0x",
-      ens: "me.eth",
-      balance: 1,
+      address: address,
+      ens,
+      balance: await getEtherBalance(address),
+      twitter: "hello",
     };
   },
 };
