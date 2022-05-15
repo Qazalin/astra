@@ -3,7 +3,7 @@ import Moralis from "moralis/node";
 import { operations } from "moralis/types/generated/web3Api";
 
 /**
- * Fetches Etherbalance for an address
+ * Fetches ENS domain name for an address
  * @param address
  */
 export const getEnsName: GetEnsName = async (address) => {

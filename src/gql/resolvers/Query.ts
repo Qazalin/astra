@@ -1,5 +1,4 @@
-import { getEnsName } from "@astra/lib/getEnsName";
-import { getEtherBalance } from "@astra/lib/getEtherBalance";
+import { getEtherBalance, getEnsName, getTwitterHandle } from "@astra/lib";
 import { QueryResolvers } from "../generated/resolvers-types.generated";
 
 export const queryResolvers: QueryResolvers = {
@@ -9,7 +8,7 @@ export const queryResolvers: QueryResolvers = {
       address: address,
       ens,
       balance: await getEtherBalance(address),
-      twitter: "hello",
+      twitter: ens ? await getTwitterHandle(ens) : null,
     };
   },
 };
