@@ -3,8 +3,12 @@ import { LandingLayout } from "@astra/layouts";
 import { ReactElement } from "react";
 import { Hero, SearchBar } from "@astra/components";
 import { Web3Provider } from "@astra/providers";
+import { GetStaticProps } from "next";
+import { apolloClient } from "@astra/lib";
+import { gql } from "@apollo/client";
 
-const Index = () => {
+const Index = ({ data }) => {
+  console.log(data);
   return (
     <Box>
       <Web3Provider />
@@ -20,4 +24,26 @@ export default Index;
 
 Index.getLayout = function getLayout(content: ReactElement) {
   return <LandingLayout>{content}</LandingLayout>;
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  const { data } = await apolloClient.query({
+    query: gql`
+      query ($ens: String!) {
+        userByEns(ens: $ens) {
+          address
+          balance
+        }
+      }
+    `,
+    variables: {
+      ens: "vitalik.eth",
+    },
+  });
+
+  return {
+    props: {
+      data,
+    },
+  };
 };

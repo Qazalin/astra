@@ -14,6 +14,23 @@ export type Scalars = {
   Float: number;
 };
 
+export type Contract = {
+  __typename?: 'Contract';
+  address: Scalars['String'];
+  name?: Maybe<Scalars['String']>;
+  nfts?: Maybe<Array<Maybe<Nft>>>;
+};
+
+export type Nft = {
+  __typename?: 'NFT';
+  image: Scalars['String'];
+  minted_at: Scalars['String'];
+  name: Scalars['String'];
+  owner: Scalars['String'];
+  symbol: Scalars['String'];
+  tokenType: Scalars['String'];
+};
+
 export type Query = {
   __typename?: 'Query';
   userByAddr?: Maybe<User>;
@@ -108,7 +125,9 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  Contract: ResolverTypeWrapper<Contract>;
   Float: ResolverTypeWrapper<Scalars['Float']>;
+  NFT: ResolverTypeWrapper<Nft>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
   User: ResolverTypeWrapper<User>;
@@ -117,10 +136,29 @@ export type ResolversTypes = {
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Boolean: Scalars['Boolean'];
+  Contract: Contract;
   Float: Scalars['Float'];
+  NFT: Nft;
   Query: {};
   String: Scalars['String'];
   User: User;
+};
+
+export type ContractResolvers<ContextType = any, ParentType extends ResolversParentTypes['Contract'] = ResolversParentTypes['Contract']> = {
+  address?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  nfts?: Resolver<Maybe<Array<Maybe<ResolversTypes['NFT']>>>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type NftResolvers<ContextType = any, ParentType extends ResolversParentTypes['NFT'] = ResolversParentTypes['NFT']> = {
+  image?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  minted_at?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  owner?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  symbol?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  tokenType?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
@@ -137,6 +175,8 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
 };
 
 export type Resolvers<ContextType = any> = {
+  Contract?: ContractResolvers<ContextType>;
+  NFT?: NftResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
 };
