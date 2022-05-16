@@ -13,5 +13,6 @@ export type ResolveEns = (ens: string) => Promise<string> | undefined;
 export type GetContractNFTs = (address: string) => Promise<Nft[]>;
 
 /**
- * 
+ *
  */
+
