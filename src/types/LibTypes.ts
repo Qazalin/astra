@@ -10,6 +10,9 @@ export type GetTwitterHandle = (ens: string) => Promise<string> | undefined;
 
 export type ResolveEns = (ens: string) => Promise<string> | undefined;
 
+/**
+ * Generalized type for a function that returns an array of NFTs regardless of implementation
+ */
 export type GetContractNFTs = (address: string) => Promise<Nft[] | undefined>;
 
 /**

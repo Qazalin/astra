@@ -60,3 +60,22 @@ function isAlchemyNFTRes(valueToTest: any): boolean {
     Array.isArray(valueToTest["nfts"])
   );
 }
+
+async function callGetNFTsForCollectionOnce(startToken = "") {
+  const url = `${baseURL}/?contractAddress=${contractAddr}&startToken=${startToken}`;
+  const response = await axios.get(url);
+  return response.data;
+}
+
+let startToken = "";
+let hasNextPage = true;
+let totalNftsFound = 0;
+while (hasNextPage) {
+  const { nfts, nextToken } = await callGetNFTsForCollectionOnce(startToken);
+  if (!nextToken) {
+    // When nextToken is not present, then there are no more NFTs to fetch.
+    hasNextPage = false;
+  }
+  startToken = nextToken;
+  totalNftsFound += nfts.length;
+}
