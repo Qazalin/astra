@@ -1,6 +1,6 @@
 // Library functions
 
-import { Nft } from "@astra/gql/generated/resolvers-types.generated";
+import { Maybe, Nft } from "@astra/gql/generated/resolvers-types.generated";
 
 export type GetEtherBalance = (address: string) => Promise<number>;
 
@@ -10,9 +10,8 @@ export type GetTwitterHandle = (ens: string) => Promise<string> | undefined;
 
 export type ResolveEns = (ens: string) => Promise<string> | undefined;
 
-export type GetContractNFTs = (address: string) => Promise<Nft[]>;
+export type GetContractNFTs = (address: string) => Promise<Nft[] | undefined>;
 
 /**
  *
  */
-

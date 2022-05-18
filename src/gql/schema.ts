@@ -8,22 +8,27 @@ export const typeDefs = gql`
     twitter: String
   }
 
-  type NFT {
-    token_address: String
-    token_id: String
-    block_number_minted: String
-    owner_of: String
-    block_number: String
-    amount: String
-    contract_type: String
+  type AlchemyNFTIdType {
+    tokenId: String
+  }
+  type AlchemyTokenUriType {
+    raw: String
+    gateway: String
+  }
+
+  type AlchemyNFTMetadata {
+    image: String
+    external_url: String
+    background_color: String
     name: String
-    symbol: String
-    token_uri: String
-    metadata: String
-    synced_at: String
-    is_valid: Int
-    syncing: Int
-    frozen: Int
+    description: String
+    # attributes: Record<any, any>
+  }
+  type NFT {
+    id: AlchemyNFTIdType
+    tokenUri: AlchemyTokenUriType
+    metadata: AlchemyNFTMetadata
+    nextToken: String
   }
 
   type Contract {

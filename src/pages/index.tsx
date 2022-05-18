@@ -4,11 +4,12 @@ import { ReactElement } from "react";
 import { Hero, SearchBar } from "@astra/components";
 import { Web3Provider } from "@astra/providers";
 import { GetStaticProps } from "next";
+import { apiParamEndpoint } from "@astra/lib";
 import { apolloClient } from "@astra/lib";
 import { gql } from "@apollo/client";
 
-const Index = ({ countries }) => {
-  console.log(countries);
+const Index = ({ data }) => {
+  console.log(data);
   return (
     <Box>
       <Web3Provider />
@@ -26,6 +27,23 @@ Index.getLayout = function getLayout(content: ReactElement) {
   return <LandingLayout>{content}</LandingLayout>;
 };
 
+export const getStaticProps: GetStaticProps = async () => {
+  const url = `https://eth-mainnet.alchemyapi.io/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}/getNFTsForCollection`;
+  const address = "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85";
+  const params = {
+    contractAddress: address,
+    withMetadata: "true",
+  };
+  const endpoint = apiParamEndpoint(url, params);
+  const res = await fetch(endpoint);
+  const data = await res.json();
+  return {
+    props: {
+      data,
+    },
+  };
+};
+/* 
 export const getStaticProps: GetStaticProps = async () => {
   const { data } = await apolloClient.query({
     query: gql`
@@ -47,3 +65,4 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   };
 };
+*/
