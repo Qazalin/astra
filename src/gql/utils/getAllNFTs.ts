@@ -2,11 +2,11 @@ import { assertsIsAlchemyNFTRes, GetContractNFTs } from "@astra/types";
 import { apiParamEndpoint } from "@astra/lib";
 
 /**
- * Returns an array of maxLength 100 of NFTs for a given collection
- * useful for displaying an overview of the collection without wasting resources
+ * Returns all the NFTs in a collection
+ * useful for search components and analytics
  * @param address The collection address
  */
-export const getFractionOfNFTs: GetContractNFTs = async (address) => {
+export const getAllNFTs: GetContractNFTs = async (address) => {
   const url = `https://eth-mainnet.alchemyapi.io/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}/getNFTsForCollection`;
   const params = {
     contractAddress: address,

@@ -62,6 +62,12 @@ function isAlchemyNFTRes(valueToTest: any): boolean {
 }
 
 async function callGetNFTsForCollectionOnce(startToken = "") {
+  const url = `https://eth-mainnet.alchemyapi.io/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}/getNFTsForCollection`;
+  const params = {
+    contractAddress: address,
+    withMetadata: "true",
+  };
+  const endpoint = apiParamEndpoint(url, params);
   const url = `${baseURL}/?contractAddress=${contractAddr}&startToken=${startToken}`;
   const response = await axios.get(url);
   return response.data;
