@@ -3,27 +3,17 @@ import { motion } from "framer-motion";
 
 export const SearchRecommendationCard = () => {
   return (
-    <Box
-      mt="10px"
-      borderRadius="10px"
-      w="100%"
-      h="300px"
-      p="15px"
-      px="40px"
-      bg="gray.700"
-    >
-      <Box>
-        <Text>hot🔥</Text>
-        <Flex mt="8px" w="100%" h="50%" justifyContent="space-between">
-          <SearchRecommendation recommendedEns="vitalik.eth" />
-          <Kbd maxH="20px">Enter</Kbd>
+    <Box>
+      <Text>hot🔥</Text>
+      <Flex mt="8px" w="100%" h="50%" justifyContent="space-between">
+        <SearchRecommendation recommendedEns="vitalik.eth" />
+        <Kbd maxH="20px">Enter</Kbd>
+      </Flex>
+      <Box mt="40px">
+        <Text>history✨</Text>
+        <Flex mt="8px" w="100%" h="50%">
+          <Text color="gray.400">your search history will appear here!</Text>
         </Flex>
-        <Box mt="40px">
-          <Text>history✨</Text>
-          <Flex mt="8px" w="100%" h="50%">
-            <Text color="gray.400">your search history will appear here!</Text>
-          </Flex>
-        </Box>
       </Box>
     </Box>
   );

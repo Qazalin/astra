@@ -35,8 +35,9 @@ export const getStaticProps: GetStaticProps = async () => {
     withMetadata: "true",
   };
   const endpoint = apiParamEndpoint(url, params);
-  const res = await fetch(endpoint);
-  const data = await res.json();
+  //   const res = await fetch(endpoint);
+  // const data = await res.json();
+  const data = "hello";
   return {
     props: {
       data,
