@@ -6,6 +6,19 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model User {
+    id Int @id @default(autoincrement())
+    alias String @unique @default("")
+    address String @unique
+    discordUsername String @default("")
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now())
+    twitterUsername String @default("")
+    pfpUrl String @default("")
+    signature String
 }
