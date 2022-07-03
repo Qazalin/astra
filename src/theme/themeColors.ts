@@ -123,6 +123,7 @@ export const COLORS = {
   },
 };
 
+const mainColors = ["#73fbd3", "#44e5e7", "#59d2fe", "#4a8fe7", "#5c7aff"];
 export const ThemeColors = {
   semanticTokens: {
     colors: {
@@ -134,8 +135,11 @@ export const ThemeColors = {
       bg2: "gray.700",
       bg3: "gray.600",
       bg4: "gray.500",
-      primary: "cyan.400",
-      secondary: "pink.400",
+      primary: mainColors[0],
+      secondary: mainColors[1],
+      tertiary: mainColors[2],
+      quarternary: mainColors[3],
+      quinary: mainColors[4],
     },
   },
 };

@@ -21,23 +21,18 @@ export const buttonStyles: ComponentStyleConfig = {
   // styles for different visual variants ("outline", "solid")
   variants: {
     primary: {
-      bg: "primary",
+      color: "primary",
       borderRadius: "10px",
       textTransform: "capitalize",
+      border: "2px solid",
+      borderColor: "primary",
       p: "15px",
     },
     primaryGhost: {
       bg: "trasnparent",
-      border: "2px solid",
-      borderColor: "primary",
       color: "primary",
-      borderRadius: "10px",
       textTransform: "capitalize",
       p: "13px",
-      _hover: {
-        bg: "primary",
-        color: "inherit",
-      },
     },
     // wallet connect button
     connect: {

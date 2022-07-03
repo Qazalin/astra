@@ -8,11 +8,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const salt = bcrypt.genSaltSync();
   const { address, signature } = req.body;
 
-  type User = {
-    address: string;
-    signature: string;
-  };
-  let user: User;
+  let user: any;
 
   try {
     user = await prisma.user.create({

@@ -1,7 +1,7 @@
 import { extendTheme, ThemeConfig } from "@chakra-ui/react";
 import { COLORS } from "./colors";
 import { ThemeColors } from "./themeColors";
-import { textStyles } from "./components/text";
+import { FONTS, textStyles } from "./components/text";
 import { linkStyles } from "./components/link";
 import { buttonStyles } from "./components/button";
 
@@ -15,6 +15,11 @@ const config: ThemeConfig = {
 export const theme = extendTheme({
   config,
   colors,
+  fonts: {
+    heading: FONTS.headingFont,
+    body: FONTS.bodyFont,
+  },
+
   semanticTokens,
   styles: {
     global: () => ({

@@ -1633,6 +1633,11 @@
     "@ethersproject/properties" "^5.6.0"
     "@ethersproject/strings" "^5.6.0"
 
+"@fontsource/hammersmith-one@^4.5.7":
+  version "4.5.7"
+  resolved "https://registry.yarnpkg.com/@fontsource/hammersmith-one/-/hammersmith-one-4.5.7.tgz#c1afe3a224f54e09ac875c41182e079b189edb49"
+  integrity sha512-fE88bW/cPf/GMUjOz8Ce7VL5V+mVsvvw4Acdz6uVIxH+BQhgK6rtz4QU6sErfTNnfZ3keIpY+4zLqZh8UGxx4Q==
+
 "@fontsource/lato@^4.5.8":
   version "4.5.8"
   resolved "https://registry.yarnpkg.com/@fontsource/lato/-/lato-4.5.8.tgz#20acb60d0895cc82723b4999492c70b1f9816460"

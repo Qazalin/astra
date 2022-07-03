@@ -9,16 +9,10 @@ import { apolloClient } from "@astra/lib";
 import { gql } from "@apollo/client";
 import { getContractNFTs, getAllNFTs } from "@astra/gql/utils";
 
-const Index = ({ nfts, nextToken }) => {
-  console.log(nfts);
-  console.log(nextToken);
+const Index = () => {
   return (
     <Box>
       <Web3Provider />
-      <Hero />
-      <Box maxW="400px">
-        <SearchBar />
-      </Box>
     </Box>
   );
 };

@@ -16,29 +16,54 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { MetaMaskIcon } from "@astra/components/icons";
 import { MetaMaskConnect } from "@astra/components";
+import { AstraLogo } from "./icons/Logo";
 
 export const Navbar = () => {
   const menuOptions = ["products", "networks"];
-  const isSmallScreen = useAdaptivityContext();
   return (
-    <Flex w="100%" h="100%" justifyContent="space-between">
-      <Box cursor="pointer" w="100%" h="100%">
-        <Logo />
+    <Flex w="100%" h="100%" pos="relative" justifyContent="space-between">
+      <Box
+        cursor="pointer"
+        left={0}
+        pos="sticky"
+        top={0}
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        h="100%"
+      >
+        <AstraLogo />
       </Box>
-      <Center
-        ml="10%"
-        display={isSmallScreen ? "none" : "flex"}
-        textTransform="capitalize"
+      <Box
+        h="100%"
+        display={["none", "none", "flex"]}
+        justifyContent="center"
+        alignItems="center"
       >
         {menuOptions.map((o, idx) => (
           <Link href={`${o}`} key={idx}>
-            <Text cursor="pointer" mx="20px" variant="h3">
+            <Text
+              cursor="pointer"
+              mx="20px"
+              fontSize="1.6rem"
+              textAlign="center"
+            >
               {o}
             </Text>
           </Link>
         ))}
-      </Center>
-      <Center display={isSmallScreen ? "flex" : "none"} mx="40px">
+        <HStack>
+          <Button variant="primary">signup</Button>
+          <Button variant="primaryGhost">login</Button>
+        </HStack>
+      </Box>
+    </Flex>
+  );
+};
+
+/* 
+ *
+      <Center display={{ md: "flex", lg: "none" }}>
         <Menu>
           <MenuButton as={Button} fontSize="25px" rightIcon={<RiMenu2Line />} />
 
@@ -54,6 +79,4 @@ export const Navbar = () => {
       <HStack w="280px">
         <MetaMaskConnect />
       </HStack>
-    </Flex>
-  );
-};
+      */

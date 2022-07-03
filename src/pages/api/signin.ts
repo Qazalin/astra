@@ -38,4 +38,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     );
     res.json(user);
   }
+
+  res.status(401);
+  res.json({ error: "Invalid signature or address" });
 };

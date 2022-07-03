@@ -1,7 +1,7 @@
 import { ComponentStyleConfig } from "@chakra-ui/react";
 
 export const FONTS = {
-  headingFont: '"Raleway", sans-serif',
+  headingFont: '"Hammersmith One", sans-serif',
   bodyFont: '"Lato", sans-serif',
 };
 
@@ -14,9 +14,11 @@ export const textStyles: ComponentStyleConfig = {
   // styles for different visual variants ("outline", "solid")
   variants: {
     heading: {
-      fontSize: ["3rem", "5rem", "7rem", "9rem"],
+      fontSize: { sm: "2rem", md: "3rem", lg: "6rem", xl: "7rem" },
       fontFamily: "heading",
       textTransform: "capitalize",
+      letterSpacing: "0.2",
+      lineHeight: "90%",
     },
     h1: {
       fontSize: ["1.3rem", "1.6rem", "1.8rem", "2.3rem"],
