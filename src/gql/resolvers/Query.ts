@@ -4,6 +4,7 @@ import {
   getTwitterHandle,
   resolveEns,
   getContractNFTs,
+  getAllNFTs,
 } from "@astra/gql/utils";
 import { QueryResolvers } from "../generated/resolvers-types.generated";
 
@@ -26,11 +27,11 @@ export const queryResolvers: QueryResolvers = {
     };
   },
   contract: async (_, { address }) => {
-    const nfts = await getContractNFTs(address);
+    const nftData = await getAllNFTs(address);
     return {
       address,
       name: "Bayc",
-      nfts,
+      nfts: nftData.nfts,
     };
   },
 };

@@ -1,28 +1,49 @@
-import { assertsIsAlchemyNFTRes, GetContractNFTs } from "@astra/types";
+import {
+  AlchemyNFTParams,
+  assertsIsAlchemyNFTRes,
+  GetContractNFTs,
+} from "@astra/types";
 import { apiParamEndpoint } from "@astra/lib";
+import { getContractNFTs } from "./getContractNFTs";
+import { Nft } from "../generated/resolvers-types.generated";
 
 /**
  * Returns all the NFTs in a collection
  * useful for search components and analytics
  * @param address The collection address
  */
-export const getAllNFTs: GetContractNFTs = async (address) => {
-  const url = `https://eth-mainnet.alchemyapi.io/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}/getNFTsForCollection`;
-  const params = {
+export const getAllNFTs = async (address: string) => {
+  let startT = "";
+  let hasNextPage = true;
+  let totalNftsFound = 0;
+  const allNFTs: Nft[] = [];
+
+  const params: AlchemyNFTParams = {
     contractAddress: address,
     withMetadata: "true",
   };
-  const endpoint = apiParamEndpoint(url, params);
-
-  const res = await fetch(endpoint);
-
-  if (!res.ok) {
-    throw new Error(res.statusText);
+  const { nfts, nextToken } = await getContractNFTs(params);
+  params.startToken = nextToken;
+  while (hasNextPage) {
+    console.log("looking for more");
+    const { nfts, nextToken } = await getContractNFTs(params);
+    totalNftsFound += nfts.length;
+    allNFTs.concat(nfts);
+    console.log("another one");
+    console.log(
+      nfts.map((nft, i) => {
+        if (nft.metadata.name) {
+          if (nft.metadata.name.startsWith("mechanica")) {
+            return nft;
+          }
+        }
+      })
+    );
+    console.log("--------------");
+    if (!nextToken) {
+      hasNextPage = false;
+    }
   }
-
-  const data = await res.json();
-  // probably have this in a try/catch so it doesn't blow up?
-  // or keep it as is and handle all error on the client side using ErrorBoundry
-  assertsIsAlchemyNFTRes(data);
-  return data.nfts;
+  // When nextToken is not present, then there are no more NFTs to fetch.
+  return { nfts: allNFTs };
 };

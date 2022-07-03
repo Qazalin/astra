@@ -1,5 +1,8 @@
 import { Box, Stack, Text, SkeletonText, Skeleton } from "@chakra-ui/react";
 
+/**
+ * Function for displaying the search results
+ */
 export const SearchResultsCard = () => {
   const isLoading = false;
   return (
@@ -14,26 +17,6 @@ export const SearchResultsCard = () => {
         </>
       ) : (
         <Box>
-          <Text>res</Text>
-          <Text>res</Text>
-          <Text>res</Text>
-          <Text>res</Text>
-          <Text>res</Text>
-          <Text>res</Text>
-          <Text>res</Text>
-          <Text>res</Text>
-          <Text>res</Text>
-          <Text>res</Text>
-          <Text>res</Text>
-          <Text>res</Text>
-          <Text>res</Text>
-          <Text>res</Text>
-          <Text>res</Text>
-          <Text>res</Text>
-          <Text>res</Text>
-          <Text>res</Text>
-          <Text>res</Text>
-          <Text>res</Text>
           <Text>res</Text>
         </Box>
       )}

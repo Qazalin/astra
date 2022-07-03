@@ -41,5 +41,6 @@ export const typeDefs = gql`
     userByAddr(address: String!): User
     userByEns(ens: String!): User
     contract(address: String!): Contract
+    searchForEns(ens: String!): NFT
   }
 `;

@@ -75,18 +75,6 @@ export const SearchBar = () => {
             .eth
           </Box>
         </HStack>
-        <Box
-          mt="10px"
-          borderRadius="10px"
-          w="100%"
-          h="300px"
-          p="15px"
-          px="40px"
-          bg="gray.700"
-          overflow="auto"
-        >
-          <SearchResultsCard />
-        </Box>
         <ScaleFade initialScale={0.9} in={isOpen} unmountOnExit={true}>
           <Box
             mt="10px"

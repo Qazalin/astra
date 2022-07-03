@@ -4,4 +4,11 @@ import { Nft } from "@astra/gql/generated/resolvers-types.generated";
 export type TokenTypes = "ERC721" | "ERC1155";
 export type AlchemyNFTRes = {
   nfts: Nft[];
+  nextToken?: string;
+};
+
+export type AlchemyNFTParams = {
+  contractAddress: string;
+  withMetadata: string;
+  startToken?: string;
 };

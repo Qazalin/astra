@@ -21,7 +21,7 @@ export const theme = extendTheme({
       body: {
         overflow: "hidden",
         fontFamily: "body",
-        bg: "bg1",
+        bg: "black",
         lineHeight: "base",
       },
     }),
