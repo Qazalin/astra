@@ -1,5 +1,5 @@
 import { Box, Flex, Input, Button, Text } from "@chakra-ui/react";
-import { MetaMaskConnect } from "@astra/components";
+import { MetaMaskConnect, MetaMaskSign } from "@astra/components";
 import { useSWRConfig } from "swr";
 import { useRouter } from "next/router";
 import { auth } from "lib";
@@ -22,7 +22,7 @@ export const AuthForm: React.FC<{
       alignItems="center"
       justifyContent="center"
     >
-      <MetaMaskConnect />
+      <MetaMaskSign />
     </Box>
   );
 };

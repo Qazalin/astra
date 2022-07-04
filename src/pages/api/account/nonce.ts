@@ -18,11 +18,12 @@ export default function handler(
       errorMsg: `invalid address ${addr}`,
     });
   }
-  const nonce = Math.random() * 1e4;
+  const nonce = Math.floor(Math.random() * 1e13);
   res.status(200).json({
     errorCode: 0,
     data: {
-      nonce: `Welcome to Astra, please esign this message to login: ${nonce} your address is ${addr}`,
+      nonce: `Welcome to Astra, please sign this message to login: ${nonce}`,
     },
   });
 }
+// fe020e5182d6b72da976558beac91617693c9827eb9a684b6143f9b6d7a4adbb
