@@ -4,6 +4,7 @@ import "@fontsource/hammersmith-one";
 import "@fontsource/raleway";
 
 import { theme } from "@astra/theme";
+import { SharedLayout } from "@astra/layouts";
 
 function MyApp({ Component, pageProps }) {
   // Use the layout defined at the page level, if available
@@ -11,7 +12,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ChakraProvider resetCSS theme={theme}>
-      {getLayout(<Component {...pageProps} />)}
+      <SharedLayout>{getLayout(<Component {...pageProps} />)}</SharedLayout>
     </ChakraProvider>
   );
 }

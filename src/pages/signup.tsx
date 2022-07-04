@@ -1,10 +1,6 @@
-import { Box, Text } from "@chakra-ui/react";
+import { AuthForm } from "components";
 const Signup = () => {
-  return (
-    <Box>
-      <Text>Signup</Text>
-    </Box>
-  );
+  return <AuthForm mode="signup" />;
 };
 
 export default Signup;

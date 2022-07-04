@@ -14,17 +14,17 @@ const {
 
 export function MetaMaskConnect() {
   const chainId = useChainId();
-  const accounts = useAccounts();
+  // const accounts = useAccounts();
   const error = useError();
   const isActivating = useIsActivating();
 
   const isActive = useIsActive();
 
-  const provider = useProvider();
-  const ENSNames = useENSNames(provider);
+  // const provider = useProvider();
+  // const ENSNames = useENSNames(provider);
 
   return (
-    <VStack spacing={6} w="100%" h="100%">
+    <VStack spacing={6}>
       <ConnectWallet
         connector={metaMask}
         chainId={chainId}
@@ -32,11 +32,16 @@ export function MetaMaskConnect() {
         error={error}
         isActive={isActive}
       />
+    </VStack>
+  );
+}
+
+/*
+ *
+ *
       <AccountsView
         accounts={accounts}
         provider={provider}
         ENSNames={ENSNames}
       />
-    </VStack>
-  );
-}
+      */

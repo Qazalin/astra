@@ -1,4 +1,5 @@
 import { Box, Flex, Input, Button, Text } from "@chakra-ui/react";
+import { MetaMaskConnect } from "@astra/components";
 import { useSWRConfig } from "swr";
 import { useRouter } from "next/router";
 import { auth } from "lib";
@@ -13,10 +14,15 @@ export const AuthForm: React.FC<{
 
   const router = useRouter();
   return (
-    <Box h="100vh" w="100vw" overflow="hidden">
-      <Flex justify="center" align="center" h="100%">
-        hello
-      </Flex>
+    <Box
+      display="flex"
+      h="100vh"
+      w="100vw"
+      overflow="hidden"
+      alignItems="center"
+      justifyContent="center"
+    >
+      <MetaMaskConnect />
     </Box>
   );
 };

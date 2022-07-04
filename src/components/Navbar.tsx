@@ -17,6 +17,7 @@ import { motion } from "framer-motion";
 import { MetaMaskIcon } from "@astra/components/icons";
 import { MetaMaskConnect } from "@astra/components";
 import { AstraLogo } from "./icons/Logo";
+import { ReactElement } from "react";
 
 export const Navbar = () => {
   const menuOptions = ["products", "networks"];
@@ -34,49 +35,56 @@ export const Navbar = () => {
       >
         <AstraLogo />
       </Box>
-      <Box
-        h="100%"
-        display={["none", "none", "flex"]}
-        justifyContent="center"
-        alignItems="center"
-      >
-        {menuOptions.map((o, idx) => (
-          <Link href={`${o}`} key={idx}>
-            <Text
-              cursor="pointer"
-              mx="20px"
-              fontSize="1.6rem"
-              textAlign="center"
-            >
-              {o}
-            </Text>
-          </Link>
-        ))}
-        <HStack>
-          <Button variant="primary">signup</Button>
-          <Button variant="primaryGhost">login</Button>
-        </HStack>
-      </Box>
+      <DesktopNavbar>
+        <NavbarOptions menuOptions={menuOptions} />
+      </DesktopNavbar>
+      <MobileNavbar>
+        <NavbarOptions menuOptions={menuOptions} />
+      </MobileNavbar>
     </Flex>
   );
 };
 
-/* 
- *
-      <Center display={{ md: "flex", lg: "none" }}>
-        <Menu>
-          <MenuButton as={Button} fontSize="25px" rightIcon={<RiMenu2Line />} />
+const DesktopNavbar: React.FC<{ children: ReactElement }> = ({ children }) => (
+  <Box
+    h="100%"
+    display={["none", "none", "flex"]}
+    justifyContent="center"
+    alignItems="center"
+  >
+    {children}
+  </Box>
+);
 
-          <MenuList>
-            {menuOptions.map((o, idx) => (
-              <MenuItem key={idx} textTransform="capitalize">
-                {o}
-              </MenuItem>
-            ))}
-          </MenuList>
-        </Menu>
-      </Center>
-      <HStack w="280px">
-        <MetaMaskConnect />
-      </HStack>
-      */
+const MobileNavbar: React.FC<{ children: ReactElement }> = ({ children }) => (
+  <Box display={["flex", "flex", "none"]}>
+    <Menu>
+      <MenuButton
+        as={Button}
+        fontSize="25px"
+        rightIcon={<RiMenu2Line />}
+        m="auto"
+      />
+
+      <MenuList>{children}</MenuList>
+    </Menu>
+  </Box>
+);
+
+const NavbarOptions: React.FC<{ menuOptions: string[] }> = ({
+  menuOptions,
+}) => (
+  <>
+    {menuOptions.map((o, idx) => (
+      <Link href={`${o}`} key={idx}>
+        <Text cursor="pointer" mx="20px" fontSize="1.6rem" textAlign="center">
+          {o}
+        </Text>
+      </Link>
+    ))}
+    <HStack alignItems="center" justifyContent="center">
+      <Button variant="primary">signup</Button>
+      <Button variant="primaryGhost">login</Button>
+    </HStack>
+  </>
+);
