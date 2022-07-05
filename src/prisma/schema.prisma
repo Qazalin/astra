@@ -13,7 +13,7 @@ datasource db {
 
 model User {
     id Int @id @default(autoincrement())
-    alias String @unique @default("")
+    alias String @default("")
     address String @unique
     discordUsername String @default("")
     createdAt DateTime @default(now())

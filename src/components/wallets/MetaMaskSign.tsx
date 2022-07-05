@@ -55,12 +55,15 @@ export const MetaMaskSign = () => {
     }
   }, []);
   return (
-    <ConnectWallet
-      connector={metaMask}
-      chainId={chainId}
-      isActivating={isActivating}
-      error={error}
-      isActive={isActive}
-    />
+    <>
+      <ConnectWallet
+        connector={metaMask}
+        chainId={chainId}
+        isActivating={isActivating}
+        error={error}
+        isActive={isActive}
+      />
+      <Button>sign</Button>
+    </>
   );
 };
