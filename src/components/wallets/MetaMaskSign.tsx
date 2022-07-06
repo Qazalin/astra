@@ -1,12 +1,9 @@
-import { Button } from "@chakra-ui/react";
-import { ethers, providers, Signer } from "ethers";
 import { hooks, metaMask } from "@astra/lib/connectors";
+import { Box, Button, useToast, VStack } from "@chakra-ui/react";
+import { ConnectWallet, AccountsView } from "@astra/components";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { ConnectWallet } from "@astra/components";
-import { ResponseType } from "@astra/types";
-import { JsonRpcProvider, JsonRpcSigner } from "@ethersproject/providers";
-
-// https://api.nftgo.io/api/v1/account/verifynonce?address=0x8e269e816374609d3ce5aab10c992a7994d3a5dd&signature=0x422fff40c51ce6a4a2b6489ac65ac15a29e7632fa24ad1c66514ff1a89e6e0cf214a484bca827e083adfcb53117e4ae1d4e04cb31649e3f50102f7675b4d75841c
+import { signMessage } from "@astra/lib/signature";
 
 const {
   useChainId,
@@ -15,9 +12,10 @@ const {
   useIsActivating,
   useIsActive,
   useProvider,
+  useENSNames,
 } = hooks;
 
-export const MetaMaskSign = () => {
+export function MetaMaskSign() {
   const chainId = useChainId();
   const accounts = useAccounts();
   const error = useError();
@@ -25,45 +23,59 @@ export const MetaMaskSign = () => {
 
   const isActive = useIsActive();
 
+  const router = useRouter();
+  const toast = useToast();
   const provider = useProvider();
   // const ENSNames = useENSNames(provider);
+  //
+
+  function handleConnectWallet() {
+    metaMask.activate().then(() => {
+      if (isActive) {
+        signMessage(provider, accounts[0]).then((signature) => {
+          fetch(
+            `/api/account/verifyNonce?address=${accounts[0]}&signature=${signature}`,
+            {
+              method: "POST",
+            }
+          )
+            .then((r) => r.json())
+            .then((res) => {
+              console.log(res);
+            });
+        });
+      }
+    });
+  }
 
   useEffect(() => {
-    async function getSignMessage(address: string): Promise<string> {
-      const res = await fetch(`/api/account/nonce?address=${address}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
+    if (isActive)
+      toast({
+        title: "Success",
+        description: "MetaMask connected",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
       });
-      const data: ResponseType<{ nonce: string }> = await res.json();
-      return data.data.nonce;
-    }
-
-    async function signMessage(): Promise<string> {
-      const message = await getSignMessage(accounts[0]);
-      const signature: string = await provider.provider?.request({
-        method: "personal_sign",
-        params: [accounts[0], message],
+    else if (error)
+      toast({
+        title: "Error",
+        description: error.message,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
       });
-      return signature;
-    }
-    if (isActive) {
-      signMessage().then((r) => {
-        console.log(r);
-      });
-    }
-  }, []);
+  }, [isActive]);
   return (
-    <>
-      <ConnectWallet
-        connector={metaMask}
-        chainId={chainId}
-        isActivating={isActivating}
-        error={error}
-        isActive={isActive}
-      />
-      <Button>sign</Button>
-    </>
+    <VStack spacing={6}>
+      <Button
+        variant="connect"
+        onClick={handleConnectWallet}
+        bg="quarternary"
+        disabled={isActivating}
+      >
+        Get started
+      </Button>
+    </VStack>
   );
-};
+}

@@ -1,5 +1,5 @@
 import { hooks, metaMask } from "@astra/lib/connectors";
-import { Box, VStack } from "@chakra-ui/react";
+import { Box, Button, VStack } from "@chakra-ui/react";
 import { ConnectWallet, AccountsView } from "@astra/components";
 
 const {
@@ -25,23 +25,7 @@ export function MetaMaskConnect() {
 
   return (
     <VStack spacing={6}>
-      <ConnectWallet
-        connector={metaMask}
-        chainId={chainId}
-        isActivating={isActivating}
-        error={error}
-        isActive={isActive}
-      />
+      <Button variant="connect">Connect Wallet</Button>
     </VStack>
   );
 }
-
-/*
- *
- *
-      <AccountsView
-        accounts={accounts}
-        provider={provider}
-        ENSNames={ENSNames}
-      />
-      */
