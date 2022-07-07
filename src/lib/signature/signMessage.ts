@@ -9,11 +9,11 @@ import { getSignMessage } from "./getSignMessage";
 export async function signMessage(
   provider: Web3Provider,
   publicKey: string
-): Promise<string> {
+): Promise<[string, string]> {
   const message = await getSignMessage(publicKey);
   const signature: string = await provider.provider?.request({
     method: "personal_sign",
     params: [publicKey, message],
   });
-  return signature;
+  return [signature, message];
 }

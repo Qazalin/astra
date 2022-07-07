@@ -4,35 +4,36 @@ import cookie from "cookie";
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "lib/prisma";
 import { ResponseType } from "@astra/types";
+import { verifySig, addressValidityCheck } from "@astra/lib/signature";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseType<{ uid: string }>>
 ) {
   // address validity check
-  const { address, signature } = req.query;
-  if (!address || !signature) {
+  const {
+    address: _address,
+    signature: _signature,
+    message: _message,
+  } = req.query;
+
+  const [address, signature, message] = addressValidityCheck(
+    _address,
+    _signature,
+    _message,
+    res
+  );
+
+  // verify the signature
+  const isValid = verifySig(address, signature, message);
+  if (!isValid) {
     res.status(401).json({
       errorCode: 1,
-      errorMsg: "address and/or signature is required",
-    });
-  }
-  if (typeof address !== "string" || typeof signature !== "string") {
-    res.status(401).json({
-      errorCode: 1,
-      errorMsg: "address and/or signature should be a string",
-    });
-    throw new Error();
-  }
-  if (!address.startsWith("0x") || address.length !== 42) {
-    res.status(401).json({
-      errorCode: 1,
-      errorMsg: `invalid address ${address}`,
+      errorMsg: "invalid signature",
     });
   }
 
   // create a user
-
   const salt = bcrypt.genSaltSync();
   let user: any;
 

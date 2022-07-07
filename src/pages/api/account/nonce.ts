@@ -20,8 +20,10 @@ export default async function handler(
     });
   }
 
-  // give a nonce to the noobs
+  // generate a nonce
   const nonce = Math.floor(Math.random() * 1e13);
+
+  // Send the nonce to the client
   res.status(200).json({
     errorCode: 0,
     data: {
