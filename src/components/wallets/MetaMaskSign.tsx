@@ -3,7 +3,7 @@ import { Box, Button, useToast, VStack } from "@chakra-ui/react";
 import { ConnectWallet, AccountsView } from "@astra/components";
 import { useRouter } from "next/router";
 import { MouseEvent, useEffect } from "react";
-import { signMessage } from "@astra/lib/signature";
+import { signMessage, verifySig } from "@astra/lib/signature";
 import { isError } from "util";
 
 const {
@@ -46,6 +46,13 @@ export function MetaMaskSign() {
   async function handleConnectWallet(e: MouseEvent) {
     e.preventDefault();
     await metaMask.activate();
+    if (isActive) {
+      const [signature, message] = await signMessage(provider, accounts[0]);
+      const res = await fetch(
+        `/api/account/verifyNonce?address=${accounts[0]}&signature=${signature}&message=${message}`
+      );
+      console.log(res.json());
+    }
   }
 
   // useEffect(() => {}, [isActive, error]);

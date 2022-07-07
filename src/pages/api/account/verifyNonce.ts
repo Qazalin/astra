@@ -37,6 +37,7 @@ export default async function handler(
   const salt = bcrypt.genSaltSync();
   let user: any;
 
+  // TODO: This part has errors
   try {
     user = await prisma.user.create({
       data: {

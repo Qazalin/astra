@@ -20,4 +20,5 @@ export function verifySig(
     console.log(e);
     return false;
   }
+  return true;
 }
