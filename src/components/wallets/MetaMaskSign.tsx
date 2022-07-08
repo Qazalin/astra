@@ -2,7 +2,7 @@ import { hooks, metaMask } from "@astra/lib/connectors";
 import { Box, Button, useToast, VStack } from "@chakra-ui/react";
 import { ConnectWallet, AccountsView } from "@astra/components";
 import { useRouter } from "next/router";
-import { MouseEvent, useEffect } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import { signMessage, verifySig } from "@astra/lib/signature";
 import { isError } from "util";
 
@@ -16,6 +16,8 @@ const {
 } = hooks;
 
 export function MetaMaskSign() {
+  const [signature, setSignature] = useState<string>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const accounts = useAccounts();
   const error = useError();
   const isActivating = useIsActivating();
@@ -24,7 +26,7 @@ export function MetaMaskSign() {
   const toast = useToast();
   const provider = useProvider();
 
-  function sucess(msg: string) {
+  function success(msg: string) {
     toast({
       title: "Success",
       description: msg,
@@ -43,81 +45,68 @@ export function MetaMaskSign() {
       isClosable: true,
     });
   }
+
+  const signToServer = async () => {
+    try {
+      const [signature, message] = await signMessage(provider, accounts[0]);
+      try {
+        setIsLoading(true);
+        const res = await fetch(
+          `/api/account/verifyNonce?address=${accounts[0]}&signature=${signature}&message=${message}`
+        );
+        const data = await res.json();
+        setIsLoading(false);
+        if (data.errorCode === 0) {
+          success(data.data.nonce);
+          setSignature(signature);
+        } else {
+          err(data.message);
+        }
+      } catch (e: unknown) {
+        if (e instanceof Error) {
+          err(e.message);
+        }
+      }
+    } catch (e: any) {
+      // danger
+      if (typeof e === "object" && "message" in e) {
+        err(e.message);
+      }
+    }
+  };
   async function handleConnectWallet(e: MouseEvent) {
     e.preventDefault();
     await metaMask.activate();
     if (isActive) {
-      const [signature, message] = await signMessage(provider, accounts[0]);
-      const res = await fetch(
-        `/api/account/verifyNonce?address=${accounts[0]}&signature=${signature}&message=${message}`
-      );
-      console.log(res.json());
+      await signToServer();
     }
   }
 
-  // useEffect(() => {}, [isActive, error]);
   useEffect(() => {
     if (error) err(error.message);
-    else if (isActive) sucess("MetaMask connected");
-  }, [error, isActive]);
+    if (isActive) success("MetaMask connected");
+  }, [error]);
 
   return (
-    <VStack spacing={6}>
-      <Button
-        variant="connect"
-        onClick={async (e) => await handleConnectWallet(e)}
-        bg="quarternary"
-        disabled={isActivating}
-      >
-        Get started
-      </Button>
+    <VStack w="100%">
+      {isLoading ? (
+        <Box>loading...</Box>
+      ) : (
+        <Box
+          onClick={async (e) => await handleConnectWallet(e)}
+          bg="quarternary"
+          w="100%"
+          h="100%"
+          textAlign="center"
+          cursor="pointer"
+        >
+          {isActive && !signature
+            ? "Click here to sign the message"
+            : isActive && signature
+            ? "Signature received"
+            : "Get started"}
+        </Box>
+      )}
     </VStack>
   );
 }
-
-/* 
- *
- *
-    if (isActive) {
-      signMessage(provider, accounts[0]).then(([signature, message]) => {
-        fetch(
-          `/api/account/verifyNonce?address=${accounts[0]}&signature=${signature}&message=${message}`,
-          {
-            method: "POST",
-          }
-        )
-          .catch((e) => console.log("e"))
-          .then((r: Response) => r.json())
-          .then((res) => {
-            toast({
-              title: "Success",
-              description: "MetaMask connected",
-              status: "success",
-              duration: 5000,
-              isClosable: true,
-            });
-            console.log(res);
-          })
-          .catch((e: Error) => {
-            console.log("there was an error");
-            toast({
-              title: "Error",
-              description: e.message,
-              status: "error",
-              duration: 5000,
-              isClosable: true,
-            });
-          });
-      });
-    }
-    if (error) {
-      console.log(error);
-      toast({
-        title: "Error",
-        description: error.message,
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      });
-    }
-    */

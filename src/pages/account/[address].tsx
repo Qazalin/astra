@@ -1,8 +1,8 @@
-import prisma from "@astra/lib/prisma";
+import { prisma } from "@astra/lib/prisma";
 import { Box, HStack, Grid, GridItem, Text } from "@chakra-ui/react";
 import { GetServerSideProps } from "next";
 import Image from "next/image";
-//<Image width={50} height={50} src="" />
+
 const Account = ({ user }) => {
   console.log(user);
   return (

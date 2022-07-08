@@ -10,13 +10,13 @@ export default async function handler(
   if (!address) {
     res.status(401).json({
       errorCode: 1,
-      errorMsg: "address is required",
+      message: "address is required",
     });
   }
   if (address.slice(0, 2) !== "0x" || address.length !== 42) {
     res.status(401).json({
       errorCode: 1,
-      errorMsg: `invalid address ${address}`,
+      message: `invalid address ${address}`,
     });
   }
 

@@ -2,9 +2,10 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import cookie from "cookie";
 import { NextApiRequest, NextApiResponse } from "next";
-import prisma from "lib/prisma";
+import { prisma } from "lib/prisma";
 import { ResponseType } from "@astra/types";
 import { verifySig, addressValidityCheck } from "@astra/lib/signature";
+import { ACCESS_COOKIE } from "@astra/lib/constants";
 
 export default async function handler(
   req: NextApiRequest,
@@ -29,7 +30,7 @@ export default async function handler(
   if (!isValid) {
     res.status(401).json({
       errorCode: 1,
-      errorMsg: "invalid signature",
+      message: "invalid signature",
     });
   }
 
@@ -37,7 +38,6 @@ export default async function handler(
   const salt = bcrypt.genSaltSync();
   let user: any;
 
-  // TODO: This part has errors
   try {
     user = await prisma.user.create({
       data: {
@@ -47,30 +47,44 @@ export default async function handler(
     });
   } catch (e) {
     res.status(400);
-    res.json({ errorCode: 1, errorMsg: `Error: ${e}` });
+    res.json({
+      errorCode: 1,
+      message: `${e.message}`,
+    });
+    // `Error: User already exists` });
   }
 
-  const token = jwt.sign(
-    {
-      address: user.address,
-      id: user.id,
-      time: Date.now(),
-    },
-    process.env.JWT_SECRET,
-    {
-      expiresIn: "8h",
-    }
-  );
+  if (user && bcrypt.compareSync(signature, user.signature)) {
+    const token = jwt.sign(
+      {
+        address: user.address,
+        id: user.id,
+        time: Date.now(),
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "8h",
+      }
+    );
 
-  res.setHeader(
-    "Set-Cookie",
-    cookie.serialize("TOKEN", token, {
-      httpOnly: true,
-      maxAge: 8 * 60 * 60,
-      path: "/",
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-    })
-  );
-  res.status(400).json(user);
+    res.setHeader(
+      "Set-Cookie",
+      cookie.serialize(ACCESS_COOKIE, token, {
+        httpOnly: true,
+        maxAge: 8 * 60 * 60,
+        path: "/",
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+      })
+    );
+
+    res.json({
+      errorCode: 0,
+      data: user,
+    });
+  }
+
+  res
+    .status(401)
+    .json({ errorCode: 1, message: "Invalid signature or address" });
 }

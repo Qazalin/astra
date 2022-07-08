@@ -1,0 +1,1 @@
+export const ACCESS_COOKIE = "ASTRA_ACCESS_TOKEN";
