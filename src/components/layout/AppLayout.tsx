@@ -19,14 +19,7 @@ export const AppLayout: React.FC<LayoutProps> = ({ children }) => {
       <Box w={"100%"} px="10px">
         {children}
       </Box>
-      <Box
-        position="absolute"
-        width={{ md: "100px", lg: "250px" }}
-        left={0}
-        h="100%"
-        borderRight="1px solid"
-        borderRightColor="gray.800"
-      >
+      <Box position="absolute" left={0}>
         <Sidebar />
       </Box>
     </Box>
