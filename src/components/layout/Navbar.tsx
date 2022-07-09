@@ -20,7 +20,7 @@ export const Navbar = () => {
     <Flex w="100%" h="100%" pos="relative" justifyContent="space-between">
       <Box
         cursor="pointer"
-        left={0}
+        left={5}
         pos="sticky"
         top={0}
         display="flex"
@@ -30,12 +30,6 @@ export const Navbar = () => {
       >
         <AstraLogo />
       </Box>
-      <DesktopNavbar>
-        <NavbarOptions menuOptions={menuOptions} />
-      </DesktopNavbar>
-      <MobileNavbar>
-        <NavbarOptions menuOptions={menuOptions} />
-      </MobileNavbar>
     </Flex>
   );
 };
@@ -83,3 +77,12 @@ const NavbarOptions: React.FC<{ menuOptions: string[] }> = ({
     </HStack>
   </>
 );
+/* 
+ *
+      <DesktopNavbar>
+        <NavbarOptions menuOptions={menuOptions} />
+      </DesktopNavbar>
+      <MobileNavbar>
+        <NavbarOptions menuOptions={menuOptions} />
+      </MobileNavbar>
+      */

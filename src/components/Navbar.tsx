@@ -9,13 +9,8 @@ import {
   Icon,
 } from "@chakra-ui/react";
 import { Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
-import { Logo } from "./Logo";
-import { useAdaptivityContext } from "@astra/hooks";
 import { RiMenu2Line } from "react-icons/ri";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { MetaMaskIcon } from "@astra/components/icons";
-import { MetaMaskConnect } from "@astra/components";
 import { AstraLogo } from "./icons/Logo";
 import { ReactElement } from "react";
 
