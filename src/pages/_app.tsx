@@ -5,6 +5,7 @@ import "@fontsource/raleway";
 
 import { theme } from "@astra/theme";
 import { SharedLayout } from "@astra/layouts";
+import { AppLayout } from "@astra/components/layout/AppLayout";
 
 function MyApp({ Component, pageProps }) {
   // Use the layout defined at the page level, if available
@@ -12,9 +13,12 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ChakraProvider resetCSS theme={theme}>
-      <SharedLayout>{getLayout(<Component {...pageProps} />)}</SharedLayout>
+      <AppLayout>
+        <Component {...pageProps} />
+      </AppLayout>
     </ChakraProvider>
   );
 }
 
 export default MyApp;
+// <AppLayout>{getLayout(<Component {...pageProps} />)}</AppLayout>

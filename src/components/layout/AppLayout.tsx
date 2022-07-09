@@ -1,23 +1,18 @@
-import { Box, HStack } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import React from "react";
-import { Sidebar } from "components";
-import { useWindowSize } from "hooks";
-import { LayoutProps } from "types";
-import { breakpoints } from "theme";
+import { Sidebar } from "./Sidebar";
 import { Navbar } from "./Navbar";
-import { useRouter } from "next/router";
+import { LayoutProps } from "types";
 
 export const AppLayout: React.FC<LayoutProps> = ({ children }) => {
-  const { width } = useWindowSize();
-  const Sidebarwidth = width <= breakpoints.md ? "100px" : "250px";
   return (
-    <Box overflow="hidden">
+    <Box w="100%" h="100vh">
       <Box h="100px" w="100%">
         <Navbar />
       </Box>
       <Box
-        w={`cal(100% - ${Sidebarwidth})`}
-        ml={Sidebarwidth}
+        w={"100%"}
+        ml={{ md: "100px", lg: "250px" }}
         px="10px"
         borderTopLeftRadius="20px"
         bg="bg0"
@@ -26,7 +21,7 @@ export const AppLayout: React.FC<LayoutProps> = ({ children }) => {
       </Box>
       <Box
         position="absolute"
-        width={Sidebarwidth}
+        width={{ md: "100px", lg: "250px" }}
         left={0}
         h="calc(100% - 100px)"
         top={100}
