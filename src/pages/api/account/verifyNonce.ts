@@ -34,7 +34,7 @@ export default async function handler(
     });
   }
 
-  // create a user
+  // create a user or login the user
   const salt = bcrypt.genSaltSync();
   let user: any;
 
@@ -46,15 +46,15 @@ export default async function handler(
       },
     });
   } catch (e) {
-    res.status(400);
-    res.json({
-      errorCode: 1,
-      message: `${e.message}`,
+    // `Error: User already exists`
+    user = await prisma.user.findUnique({
+      where: {
+        address,
+      },
     });
-    // `Error: User already exists` });
   }
 
-  if (user && bcrypt.compareSync(signature, user.signature)) {
+  if (user) {
     const token = jwt.sign(
       {
         address: user.address,

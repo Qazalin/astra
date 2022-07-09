@@ -10,3 +10,13 @@ export const useUser = () => {
     isError: error,
   };
 };
+
+export const useProjects = () => {
+  const { data, error } = useSwr("/projects", fetcher);
+
+  return {
+    projects: data || [],
+    isLoading: !data && !error,
+    isError: error,
+  };
+};

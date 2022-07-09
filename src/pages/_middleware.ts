@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const signedinPages = [
   "/overview",
-  "/colabs",
+  "/collabs",
   "/projects",
   "/settings",
   "/contacts",
