@@ -19,12 +19,13 @@ export const AppLayout: React.FC<LayoutProps> = ({ children }) => {
       </Box>
       <Box
         px="10px"
-        ml={{ md: "100px", lg: sideBarWidth }}
+        // width={{ md: "calc(100% - 100px)", lg: `calc(100% - ${sideBarWidth}` }}
         transition="margin 0.6s"
+        ml={{ md: "100px", lg: sideBarWidth }}
       >
         {children}
       </Box>
-      <Box pos="absolute" top={0} mt="100px" h="100vh">
+      <Box pos="absolute" top={100} h="100vh">
         <Sidebar changeCb={(w) => setSidebarWidth(w)} />
       </Box>
     </Box>

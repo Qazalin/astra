@@ -12,8 +12,13 @@ export const ChartWrapper: React.FC<ChartWrapperProps> = ({
   const handle = useFullScreenHandle();
   return (
     <Box display="flex" flexDir="column" {...sx}>
-      <Box display="flex" alignItems="center" justifyContent="center">
-        <Text variant="h3" textAlign="center" textTransform="capitalize">
+      <Box display="flex" alignItems="flex-start" justifyContent="center">
+        <Text
+          variant="h3"
+          textTransform="capitalize"
+          fontWeight="bold"
+          alignSelf="start"
+        >
           {title}
         </Text>
         <IconButton

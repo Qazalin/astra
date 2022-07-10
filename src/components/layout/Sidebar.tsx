@@ -59,7 +59,7 @@ export const Sidebar: React.FC<{
         }}
         onClick={handleChangeWidth}
       />
-      <Grid>
+      <Box>
         <Text
           textAlign="center"
           color="text4"
@@ -77,39 +77,36 @@ export const Sidebar: React.FC<{
             mb="10px"
             borderRadius="md"
             cursor="pointer"
+            alignItems="center"
+            justifyContent="center"
             onClick={() => router.push(`/${po.name}`)}
             key={`primary-sidebar-${i}`}
             opacity={router.route === `/${po.name}` ? 1 : 0.7}
             bg={router.route === `/${po.name}` ? "bg0" : "transparent"}
           >
-            <GridItem
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
+            <Box display="flex" alignItems="center" justifyContent="center">
               <Icon as={po.icon} my="auto" />
-            </GridItem>
-            <GridItem
+            </Box>
+            <Box
+              display={width === "100px" ? "none" : "flex"}
               w="100%"
               h="100%"
-              display="flex"
               flexDir="column"
               textAlign="start"
               ml="15px"
               justifyContent="center"
             >
               <Text
-                display={width === "100px" ? "none" : "initial"}
                 textTransform="capitalize"
                 justifySelf="center"
                 fontSize="1.2rem"
               >
                 {po.name}
               </Text>
-            </GridItem>
+            </Box>
           </Box>
         ))}
-      </Grid>
+      </Box>
     </Box>
   );
 };
