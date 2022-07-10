@@ -13,7 +13,7 @@ export default function middleware(req: NextRequest) {
   if (signedinPages.find((p) => p === req.nextUrl.pathname)) {
     const token = req.cookies.ASTRA_ACCESS_TOKEN;
     const url = req.nextUrl.clone();
-    url.pathname = "/signin";
+    url.pathname = "/signup";
     if (!token) {
       return NextResponse.redirect(url);
     }

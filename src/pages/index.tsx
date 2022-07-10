@@ -3,11 +3,6 @@ import { LandingLayout } from "@astra/layouts";
 import { ReactElement, useEffect } from "react";
 import { Hero, SearchBar } from "@astra/components";
 import { Web3Provider } from "@astra/providers";
-import next, { GetStaticProps } from "next";
-import { apiParamEndpoint } from "@astra/lib";
-import { apolloClient } from "@astra/lib";
-import { gql } from "@apollo/client";
-import { getContractNFTs, getAllNFTs } from "@astra/gql/utils";
 
 const Index = () => {
   return (
