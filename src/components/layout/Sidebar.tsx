@@ -39,8 +39,8 @@ export const Sidebar: React.FC<{
     <Box
       width={{ md: "100px", lg: width }}
       transition="width 0.6s"
-      h="100vh"
       borderRight="1px solid"
+      h="100%"
       borderRightColor="gray.800"
       fontSize="1.3rem"
       display="flex"
@@ -60,16 +60,27 @@ export const Sidebar: React.FC<{
         onClick={handleChangeWidth}
       />
       <Grid>
+        <Text
+          textAlign="center"
+          color="text4"
+          fontWeight="bold"
+          fontSize="0.9rem"
+          opacity={0.6}
+        >
+          Menu
+        </Text>
         {primaryOptions.map((po, i) => (
           <Box
             display="flex"
-            my="20px"
-            _hover={{ bg: "bg2" }}
+            _hover={{ bg: "bg0" }}
             p="10px"
+            mb="10px"
             borderRadius="md"
             cursor="pointer"
             onClick={() => router.push(`/${po.name}`)}
             key={`primary-sidebar-${i}`}
+            opacity={router.route === `/${po.name}` ? 1 : 0.7}
+            bg={router.route === `/${po.name}` ? "bg0" : "transparent"}
           >
             <GridItem
               display="flex"
@@ -91,6 +102,7 @@ export const Sidebar: React.FC<{
                 display={width === "100px" ? "none" : "initial"}
                 textTransform="capitalize"
                 justifySelf="center"
+                fontSize="1.2rem"
               >
                 {po.name}
               </Text>

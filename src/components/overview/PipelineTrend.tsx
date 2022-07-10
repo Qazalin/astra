@@ -12,7 +12,7 @@ import { PIPE_TREND } from "@astra/lib/constants";
 
 export const PipelineTrend = () => {
   return (
-    <Box maxW="500px">
+    <Box w="100%">
       <ChartWrapper title="Pipeline Trend">
         <AreaChart data={PIPE_TREND}>
           <defs>
