@@ -10,15 +10,13 @@ import { AppLayout } from "@astra/components/layout/AppLayout";
 function MyApp({ Component, pageProps }) {
   // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout || ((page: unknown) => page);
+  console.log(Component);
 
   return (
     <ChakraProvider resetCSS theme={theme}>
-      <AppLayout>
-        <Component {...pageProps} />
-      </AppLayout>
+      {getLayout(<Component {...pageProps} />)}
     </ChakraProvider>
   );
 }
 
 export default MyApp;
-// <AppLayout>{getLayout(<Component {...pageProps} />)}</AppLayout>

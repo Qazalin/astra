@@ -1,5 +1,5 @@
-import { Icon, Box, Text } from "@chakra-ui/react";
-import { LandingLayout } from "@astra/layouts";
+import { Box } from "@chakra-ui/react";
+import { LandingLayout } from "@astra/components/layout";
 import { ReactElement, useEffect } from "react";
 import { Hero, SearchBar } from "@astra/components";
 import { Web3Provider } from "@astra/providers";
@@ -12,14 +12,12 @@ const Index = () => {
   );
 };
 
-export default Index;
-
-/* 
 Index.getLayout = function getLayout(content: ReactElement) {
   return <LandingLayout>{content}</LandingLayout>;
 };
 
-*/
+export default Index;
+
 /* 
 export const getStaticProps: GetStaticProps = async () => {
   const url = `https://eth-mainnet.alchemyapi.io/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}/getNFTsForCollection`;

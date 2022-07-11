@@ -21,15 +21,18 @@ export const buttonStyles: ComponentStyleConfig = {
   // styles for different visual variants ("outline", "solid")
   variants: {
     primary: {
-      color: "primary",
-      borderRadius: "10px",
+      color: "black",
+      bg: "primary",
+      fontSize: "0.8rem",
+      fontWeight: "semibold",
+      borderRadius: "30px",
       textTransform: "capitalize",
-      border: "2px solid",
-      borderColor: "primary",
-      p: "15px",
+      py: "15px",
+      px: "30px",
     },
     primaryGhost: {
-      bg: "trasnparent",
+      bg: "transparent",
+      border: "1px solid primary",
       color: "primary",
       textTransform: "capitalize",
       p: "13px",
