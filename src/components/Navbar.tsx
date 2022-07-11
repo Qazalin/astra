@@ -13,6 +13,7 @@ import { RiMenu2Line } from "react-icons/ri";
 import Link from "next/link";
 import { AstraLogo } from "./icons/Logo";
 import { ReactElement } from "react";
+import { NavbarOptions } from "@astra/components/layout";
 
 export const Navbar = () => {
   const menuOptions = ["products", "networks"];
