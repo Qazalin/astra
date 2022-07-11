@@ -12,6 +12,8 @@ export const NavbarOptions: React.FC<{ menuOptions: string[] }> = ({
         <Text
           onClick={() => router.push(`/${o}`)}
           cursor="pointer"
+          textTransform="capitalize"
+          color={router.pathname === `/${o}` ? "text1" : "text3"}
           mx="20px"
           fontSize="1.2rem"
           textAlign="center"

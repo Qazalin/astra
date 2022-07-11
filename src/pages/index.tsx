@@ -8,6 +8,7 @@ const Index = () => {
   return (
     <Box>
       <Web3Provider />
+      <Hero />
     </Box>
   );
 };

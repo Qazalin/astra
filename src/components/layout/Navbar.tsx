@@ -1,19 +1,8 @@
-import {
-  Center,
-  Flex,
-  Button,
-  Box,
-  Text,
-  VStack,
-  HStack,
-  Icon,
-} from "@chakra-ui/react";
+import { Center, Flex, Button, Box, Text } from "@chakra-ui/react";
 import { Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 import { RiMenu2Line } from "react-icons/ri";
-import Link from "next/link";
 import { AstraLogo } from "components/icons";
 import { ReactElement } from "react";
-import { AiOutlineArrowRight } from "react-icons/ai";
 import { NavbarOptions } from "@astra/components/layout";
 
 export const Navbar = () => {

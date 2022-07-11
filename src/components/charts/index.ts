@@ -4,4 +4,4 @@ export * from "./RainbowBarChart";
 export * from "./Ratio";
 export * from "./CustomTooltip";
 export * from "./CategoricalPieChart";
-export * from "./CompsedBarLine";
+export * from "./GrowthChart";
