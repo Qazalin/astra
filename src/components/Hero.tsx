@@ -1,5 +1,6 @@
 import { Grid, GridItem, Image, Button, Box, Text } from "@chakra-ui/react";
 import { GrowthChart } from "@astra/components";
+import { GetStartedButton } from "./GetStartedButton";
 
 export const Hero = () => {
   return (
@@ -10,7 +11,12 @@ export const Hero = () => {
       templateColumns={{ lg: "repeat(1, 1fr)", xl: "repeat(2, 1fr)" }}
       gap={10}
     >
-      <GridItem textAlign="center" w="100%" h="100%">
+      <GridItem
+        textAlign="center"
+        display="flex"
+        flexDir="column"
+        justifyContent="center"
+      >
         <Text variant="heading">
           The Collaboration Stack for{" "}
           <span
@@ -25,8 +31,25 @@ export const Hero = () => {
             Web3
           </span>
         </Text>
+        <Box
+          pos="relative"
+          alignSelf="flex-end"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          mr={10}
+        >
+          <Text cursor="pointer">how it works</Text>
+          <GetStartedButton pos="unset" ml="15px" />
+        </Box>
       </GridItem>
-      <GridItem w="100%" h="100%">
+      <GridItem
+        w="100%"
+        h="100%"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
         <GrowthChart />
       </GridItem>
     </Grid>

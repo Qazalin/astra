@@ -39,7 +39,14 @@ export const GrowthChart = () => {
   }
 
   return (
-    <Box w="90%" h="100%">
+    <Box
+      w="90%"
+      h="100%"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      flexDir="column"
+    >
       <ResponsiveContainer width={"100%"} height="100%" maxHeight={200}>
         <LineChart data={data}>
           <Line

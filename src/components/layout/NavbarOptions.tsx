@@ -1,6 +1,6 @@
 import { Box, Button, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { AnimatedArrow } from "@astra/components/animated";
+import { GetStartedButton } from "@astra/components";
 
 export const NavbarOptions: React.FC<{ menuOptions: string[] }> = ({
   menuOptions,
@@ -22,25 +22,7 @@ export const NavbarOptions: React.FC<{ menuOptions: string[] }> = ({
           {o}
         </Text>
       ))}
-      <Button
-        pos="absolute"
-        border="1px solid transparent"
-        right={5}
-        _hover={{
-          opacity: "0.8",
-        }}
-        transition="all 0.3s ease"
-        bg="primary"
-        color="black"
-        p="10px"
-        fontWeight="700"
-        fontSize="0.9rem"
-        borderRadius="md"
-        cursor="pointer"
-        rightIcon={<AnimatedArrow />}
-      >
-        Get started
-      </Button>
+      <GetStartedButton />
     </>
   );
 };
