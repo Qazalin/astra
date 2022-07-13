@@ -68,6 +68,7 @@ export const GrowthChart = () => {
         </LineChart>
       </ResponsiveContainer>
       <Slider
+        mt="10px"
         aria-label="slider-ex-1"
         defaultValue={3}
         min={2}
