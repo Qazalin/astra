@@ -14,11 +14,10 @@ export const textStyles: ComponentStyleConfig = {
   // styles for different visual variants ("outline", "solid")
   variants: {
     heading: {
-      fontSize: { sm: "2rem", md: "3rem", lg: "6rem", xl: "7rem" },
+      fontSize: ["3rem", "4rem", "5rem"],
       fontFamily: "heading",
       textTransform: "capitalize",
-      letterSpacing: "0.2",
-      lineHeight: "90%",
+      lineHeight: "1.05em",
     },
     h1: {
       fontSize: ["1.3rem", "1.6rem", "1.8rem", "2.3rem"],
@@ -35,8 +34,7 @@ export const textStyles: ComponentStyleConfig = {
       fontWeight: "light",
     },
     h4: {
-      fontSize: ["0.85rem", "0.9rem", "0.95rem", "1rem", "1.3rem"],
-      fontWeight: "light",
+      fontSize: ["0.8rem", "0.9rem", "1rem"],
     },
     p: {
       fontSize: "1rem",

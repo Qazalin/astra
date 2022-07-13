@@ -1,4 +1,4 @@
-import { Button, Text } from "@chakra-ui/react";
+import { Box, Button, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { AnimatedArrow } from "@astra/components/animated";
 
@@ -23,19 +23,21 @@ export const NavbarOptions: React.FC<{ menuOptions: string[] }> = ({
         </Text>
       ))}
       <Button
-        variant="primary"
         pos="absolute"
         border="1px solid transparent"
         right={5}
-        rightIcon={<AnimatedArrow />}
         _hover={{
-          bg: "transparent",
-          border: "1px solid",
-          borderColor: "primary",
-          color: "primary",
-          textTransform: "capitalize",
-          p: "13px",
+          opacity: "0.8",
         }}
+        transition="all 0.3s ease"
+        bg="primary"
+        color="black"
+        p="10px"
+        fontWeight="700"
+        fontSize="0.9rem"
+        borderRadius="md"
+        cursor="pointer"
+        rightIcon={<AnimatedArrow />}
       >
         Get started
       </Button>

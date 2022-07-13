@@ -4,17 +4,16 @@ import "@fontsource/hammersmith-one";
 import "@fontsource/raleway";
 
 import { theme } from "@astra/theme";
-import { SharedLayout } from "@astra/layouts";
-import { AppLayout } from "@astra/components/layout/AppLayout";
+import MathJax from "react-mathjax";
 
 function MyApp({ Component, pageProps }) {
   // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout || ((page: unknown) => page);
-  console.log(Component);
-
   return (
     <ChakraProvider resetCSS theme={theme}>
-      {getLayout(<Component {...pageProps} />)}
+      <MathJax.Provider>
+        {getLayout(<Component {...pageProps} />)}
+      </MathJax.Provider>
     </ChakraProvider>
   );
 }

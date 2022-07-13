@@ -4,8 +4,8 @@ export const AnimatedArrow = () => {
   return (
     <Box
       cursor="pointer"
-      width="2vmin"
-      h="2vmin"
+      width="1vmin"
+      h="1vmin"
       boxSizing="border-box"
       transform="rotate(45deg)"
       _before={{
@@ -35,11 +35,7 @@ export const AnimatedArrow = () => {
       _hover={{
         _after: {
           transform: "translate(-1px, 2px)rotate(45deg)",
-          borderColor: "primary",
           height: "110%",
-        },
-        _before: {
-          borderColor: "primary",
         },
       }}
     />

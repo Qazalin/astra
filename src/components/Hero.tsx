@@ -5,14 +5,14 @@ export const Hero = () => {
   return (
     <Grid
       w="100vw"
-      h="auto"
+      h="50vh"
       textAlign="center"
-      templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]}
+      templateColumns={{ lg: "repeat(1, 1fr)", xl: "repeat(2, 1fr)" }}
       gap={10}
     >
-      <GridItem textAlign="center" w="100%">
+      <GridItem textAlign="center" w="100%" h="100%">
         <Text variant="heading">
-          Collaboration for the{" "}
+          The Collaboration Stack for{" "}
           <span
             style={{
               textTransform: "capitalize",
@@ -22,7 +22,7 @@ export const Hero = () => {
               fontWeight: "lighter",
             }}
           >
-            third web
+            Web3
           </span>
         </Text>
       </GridItem>
